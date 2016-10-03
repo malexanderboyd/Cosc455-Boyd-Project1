@@ -48,6 +48,6 @@ varValue : TEXT;
 linebreak:	NEWLINE;
 title 	: TITLE_BEGIN SQUARE_OPEN (TEXT|WS)+ SQUARE_CLOSE;
 paragraph 	: PARA_BEGIN parabody PARA_END;
-parabody 	: (TEXT | bold | italics | links | linebreak | list | WS)+ ;	
+parabody 	: (TEXT | bold | italics | links | linebreak | list | WS | useVariable | defineVariable)+ ;	
 body	:	(WS | TEXT | headings | bold | italics | links | images | list | linebreak |defineVariable | useVariable | paragraph)+ ;	
 gittex	: DOC_BEGIN title body DOC_END;
