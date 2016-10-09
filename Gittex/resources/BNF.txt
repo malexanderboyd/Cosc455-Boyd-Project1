@@ -1,0 +1,36 @@
+<gittex> ::= '\BEGIN' [<varDefine>] <title> <body> '\END'
+<title> ::= '\TITLE' <squareOpen> <text> <squareClose> <EOL>
+<body> ::= <header> | <paragraph> | <textTypes> | <link> | <image> | <list> | <variable> | <breakline> | <body>
+<textTypes> ::= <bold> | <italic> | <content>
+<content> ::= <text> | <content> <text>
+<header> ::= <headerStart> <content> <EOL>
+<headerStart> ::= '#' <WS>
+<paragraph> ::= <paragraphStart> <EOL> [<varDefine>] <paragraphBody> <paragraphEnd> <EOL>
+<paragraphBody> ::= <textTypes> | <link> | <variable> | <paragraph>
+<bold> ::= <ASTR_INIT> <ASTR_INIT> <WS> <content> <WS> <ASTR_INIT> <ASTR_INIT>
+<italic> ::= <ASTR_INIT> <WS> <content> <WS> <ASTR_INIT>
+<list> ::= <LIST_INIT> <WS> <content> <EOL>
+<links> ::= <squareOpen> <content> <squareClose> <address>
+<address> '(' <content> ')'
+<image> ::= <IMG_INIT> <squareOpen> <content> <squareClose> <address>
+<variable> ::= <varDefine> | <varUse>
+<varDefine> ::= <varDefineHeader> <squareOpen> <varName> '=' <varVal> <squareClose> <EOL>
+<varName> ::= <content>
+<varVal> ::= <content>
+<varUse> ::= <varUseHeader> <squareOpen> <varName> <squareClose>
+
+
+
+<varDefineHeader> ::= '\DEF'
+<varUseHeader> ::= '\USE'
+<newline> ::= '\\'
+<LIST_INIT> ::= '+'
+<IMG_INIT> ::= '!'
+<paragraphStart> :: = '\PARB'
+<paragraphEnd> ::= '\PARE'
+<squareOpen> ::= '['
+<squareClose> ::= ']'
+<ASTR_INIT> ::= '*'
+<WS> ::= ' ' | <WS> ' '
+<EOL> ::= '\n'
+<text> ::= 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9'| ',' | '"' | ':' | '?' | '.' | '/' | '_' | <text>
